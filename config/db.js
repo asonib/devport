@@ -1,8 +1,7 @@
 const config = require('./keys');
 const mongoose = require('mongoose');
-const mongoURI = config.Keys.mongoURI;
 
-exports.MongoDB = mongoose.connect(mongoURI, {
+mongoose.connect('mongodb://localhost/react-app', {
     useUnifiedTopology: true,
     useNewUrlParser: true
 }).then(() => {

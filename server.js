@@ -1,9 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const config = require('./config/db');
 
 const app = express();
-config.MongoDB;
+require('./config/db');
 
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
