@@ -7,7 +7,6 @@ module.exports = (req, res, next) => {
     if(!token){
         return res.status(401).json({msg : 'User Not Authorized'});
     }
-
     try{
         const decode = jwt.verify(token, key.KeysAccess.jwtSecret);
         console.log(decode);

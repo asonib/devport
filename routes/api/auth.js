@@ -19,7 +19,7 @@ router.get('/', auth, async (req, res) => {
     console.log(details);
 });
 
-router.post('/', [
+router.post('/', [auth , 
     check('email').isEmail(),
     // password must be at least 5 chars long
     check('password').isString()
