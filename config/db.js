@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/react-app', {
     useUnifiedTopology: true,
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useFindAndModify: false
 }).then(() => {
     console.log('MongoDB Connected');
 }).catch((err) => {
