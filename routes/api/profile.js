@@ -5,6 +5,7 @@ const auth = require('../../middleware/auth');
 const { check, validationResult } = require('express-validator');
 const router = express.Router();
 
+const keys = require('../../config/keys');
 require('../../models/Profile');
 require('../../models/Users');
 const Profile = mongoose.model('profile');
@@ -234,6 +235,19 @@ router.delete('/education/:edu_id', auth, async(req, res) => {
         console.log('Error Adding Education');
         res.sen(err.message);
     }
+});
+router.get('/github/:username', (req, res) => {
+    const options = {
+        uri : `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc&
+        client_id=${keys.KeysAccess.gitHubClientID}&client_secret=${keys.KeysAccess.gitHubSecretKey}`,
+        method: 'GET',
+        headers: {'user-agent': 'node.js'}
+    }
+    request(options, (err, response, body) => {
+        if(err) console.error('Error Getting GithubProfile');
+        if(response.statusCode!=200) res.status(401).json({msg: 'No Profile Found'});
+        res.json(JSON.parse(body));
+    });
 });
 
 module.exports = router;
