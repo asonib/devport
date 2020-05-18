@@ -42,4 +42,36 @@ router.post('/', [auth,
   }
 
 });
+
+router.get('/', auth, async(req, res) => {
+  try {
+    const posts = await Post.find().sort({date: -1});
+    if(!posts){
+      res.json({msg : 'No Posts Found'});
+    }
+    res.json(posts);
+  } catch (err) {
+    console.log('Server Error');
+    res.send(err.message);
+  }
+});
+
+router.get('/:post_id', auth, async(req, res) => {
+  
+  try {
+    const post = await Post.findById({_id: req.params.post_id});
+    if(!post){
+      return res.json({msg : 'No Posts Found'});
+    }
+    res.json(post);
+  } catch (err) {
+    console.log('Server Error');
+    if(err.kind == 'ObjectId'){
+      return res.json({msg: 'No Posts Found'});
+    }
+    
+    res.send(err.message);
+  }
+});
+
 module.exports = router;
