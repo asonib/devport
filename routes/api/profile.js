@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const request = require('request');
 const auth = require('../../middleware/auth');
 const { check, validationResult } = require('express-validator');
 const router = express.Router();
@@ -175,6 +176,63 @@ router.delete('/experience/:exp_id', auth, async (req, res) => {
     }catch(err){
         console.log('Error deleting Experience');
         res.send(err.message);
+    }
+});
+
+router.put('/education', [auth,
+    check('school').not().isEmpty(),
+    // username must be an email
+    check('degree').not().isEmpty(),
+    // password must be at least 5 chars long
+    check('fieldofstudy').not().isEmpty(),
+    check('from').not().isEmpty()
+], async(req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array() });
+    }
+    const {
+        school,
+        degree,
+        fieldofstudy,
+        from,
+        to,
+        current,
+        description
+    } = req.body;
+
+    const new_edu = {
+        school: school,
+        degree: degree,
+        fieldofstudy: fieldofstudy,
+        from: from,
+        to: to,
+        current: current,
+        description: description
+    }
+
+    try{
+        const profile = await Profile.findOne({user: req.user});
+        profile.education.unshift(new_edu);
+        await profile.save();
+
+        res.json(profile);
+    }catch(err){
+        console.log('Error Adding Education');
+        res.sen(err.message);
+    }
+});
+router.delete('/education/:edu_id', auth, async(req, res) => {
+    try{
+        const profile = await Profile.findOne({user: req.user});
+        const deleteIndex = profile.education.map(item => item.id).indexOf(req.params.edu_id);
+
+        profile.education.splice(deleteIndex, 1);
+        await profile.save();
+        res.send(profile);
+    }catch(err){
+        console.log('Error Adding Education');
+        res.sen(err.message);
     }
 });
 
