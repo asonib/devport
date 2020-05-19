@@ -4,7 +4,7 @@
   "description": "React Application",
   "main": "server.js",
   "scripts": {
-    "start": "server.js"
+    "start": "node server.js"
   },
   "author": "Aryan Soni",
   "license": "MIT",
