@@ -14,7 +14,7 @@ app.listen(3000);
 <pre>
 mongoose.connect('mongodb://localhost/my_database', {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true</pre>
   <h5>Schema Definition </h5>
   <pre>
   const Schema = mongoose.Schema;
