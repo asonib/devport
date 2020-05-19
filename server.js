@@ -12,7 +12,7 @@ app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/posts', require('./routes/api/posts'));
 app.get('/', (req, res) => {
-    res.send('Hello');
+    res.send('Hello, Welcome To React Server');
 });
 const port = process.env.PORT;
 app.listen(port, () => {
