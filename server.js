@@ -14,7 +14,7 @@ app.use('/api/posts', require('./routes/api/posts'));
 app.get('/', (req, res) => {
     res.send('Hello');
 });
-const port = 3000 || process.env.PORT;
+const port = process.env.PORT;
 app.listen(port, () => {
     console.log(`server started at port ${port}`);
 });
