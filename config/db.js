@@ -1,7 +1,7 @@
 const config = require('./keys');
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/react-app', {
+mongoose.connect(config.KeysAccess.mongoURI, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useFindAndModify: false
