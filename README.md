@@ -12,22 +12,22 @@ app.get('/', function (req, res) {
 app.listen(3000);
 <h3> Mongoose </h3>
 <pre>
-mongoose.connect('mongodb://localhost/my_database', {
+  mongoose.connect('mongodb://localhost/my_database', {
   useNewUrlParser: true,
-  useUnifiedTopology: true</pre>
-  <h5>Schema Definition </h5>
+  useUnifiedTopology: true
+</pre>
+<b>Schema Definition</b>
   <pre>
   const Schema = mongoose.Schema;
-const ObjectId = Schema.ObjectId;
+  const ObjectId = Schema.ObjectId;
 
-const BlogPost = new Schema({
-  author: ObjectId,
-  title: String,
-  body: String,
-  date: Date
-});
-  </pre>
-});
+  const BlogPost = new Schema({
+      author: ObjectId,
+      title: String,
+      body: String,
+      date: Date
+    });
+  });
 </pre>
 <h3> Bcrypt </h3>
   var bcrypt = require('bcryptjs');
