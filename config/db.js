@@ -1,7 +1,7 @@
 const config = require('./keys');
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://asonib:ASBdev75@classifier-htisx.mongodb.net/react-app?retryWrites=true&w=majority', {
+mongoose.connect('mongodb://localhost/react-app', {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useFindAndModify: false
