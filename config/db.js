@@ -1,7 +1,7 @@
 const config = require('./keys');
 const mongoose = require('mongoose');
 
-mongoose.connect(config.KeysAccess.mongoURI, {
+mongoose.connect(config.KeysAccess.mongoLocal, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useFindAndModify: false

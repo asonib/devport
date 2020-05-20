@@ -14,7 +14,7 @@ app.use('/api/posts', require('./routes/api/posts'));
 app.get('/', (req, res) => {
     res.send('Hello, Welcome To React Server');
 });
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`server started at port ${port}`);
 });

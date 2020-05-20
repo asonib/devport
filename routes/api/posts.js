@@ -135,4 +135,62 @@ router.delete('/likes/:id', auth, async(req, res) => {
   }
 });
 
+router.post('/comments/:post_id', [auth,
+  check('text').not().isEmpty(),
+], async(req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
+  }
+  try {
+    const post = await Post.findById(req.params.post_id);
+    if(!post){
+      return res.status(404).json({msg: 'No Post found'});
+    }
+    const user = await Users.findById(req.user);
+
+    const new_comment = {
+      text: req.body.text,
+      name: user.name,
+      avatar: user.avatar,
+      user: req.user
+    }
+    
+    post.comments.unshift(new_comment);
+    await post.save();
+
+    res.json({msg: 'Comment Saved'});
+  } catch (err) {
+    console.log('Server Error');
+    res.send(err.message);
+  }
+});
+
+router.delete('/comments/:post_id/:comment_id',auth, async (req, res) => {
+  try {
+    const post = await Post.findById({_id: req.params.post_id});
+    if(!post){
+      return res.status(404).json({msg: 'No Post found'});
+    }
+    console.log(post);
+    const comment = post.comments.find(comment => comment.id.toString() === req.params.comment_id);
+    if(!comment){
+      return res.status(404).json({msg: 'No Comment found'});
+    }
+    if(comment.user.toString() !== req.user){
+      return res.status(404).json({msg: 'Not Authorized To Delete'});
+    }
+    const newLocal = req.user;
+    const index = post.comments.map(comment => comment.user.toString()).indexOf(newLocal);
+    post.comments.splice(index, 1);
+    await post.save();
+    
+res.json({msg: "Comment Deleted!"});
+  } catch (err) {
+    console.log('Server Error');
+    res.send(err.message);
+  }
+
+});
+
 module.exports = router;
