@@ -1,6 +1,7 @@
 import React from 'react'
 import {Fragment, useState} from 'react';
 import  {Link} from 'react-router-dom';
+import axios from 'axios';
 
 export const Login = () => {
     const [formData, setformData] = useState({
@@ -9,9 +10,26 @@ export const Login = () => {
     });
     const {email, password} = formData;
     const onChange = e => setformData({...formData, [e.target.name]: e.target.value});
-    const onSubmit = e => {
+    const onSubmit = async(e) => {
       e.preventDefault();
-      console.log('success');
+      
+      try {
+        const loginData = {
+          email: email,
+          password: password
+        }
+        const body = JSON.stringify(loginData);
+        const config = {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+  
+        const res = await axios.post('/api/auth', body, config);
+        console.log(res);
+      } catch (err) {
+        console.log(err.messgae);
+      }
     }
     return <Fragment>
       <h1 className="large text-primary">Sign In</h1>
