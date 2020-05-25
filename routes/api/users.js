@@ -18,7 +18,7 @@ router.post('/', [
     // username must be an email
     check('email').isEmail(),
     // password must be at least 5 chars long
-    check('password').isLength({ min: 5 })
+    check('password').isLength({ min: 6 })
   ], (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
