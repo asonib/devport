@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const gravatar = require('gravatar');
+const normalize = require('normalize-url');
 const router = express.Router();
 const keys = require('../../config/keys');
 
@@ -27,7 +28,7 @@ router.post('/', [
     console.log(req.body);
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password, salt);
-    const avatar = gravatar.url(req.body.email, {s: "200", d: "mm", r: "pg"});
+    const avatar = normalize(gravatar.url(req.body.email, {s: "200", d: "mm", r: "pg"}), { forceHttps: true });
 
     const new_user = {
         name : req.body.name,
