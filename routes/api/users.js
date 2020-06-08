@@ -15,11 +15,11 @@ const Users = mongoose.model('user');
 // @desc : something
 // @access : Public
 router.post('/', [
-    check('name').isString(),
+    check('name', 'Name is required').isString(),
     // username must be an email
-    check('email').isEmail(),
+    check('email', 'Email is required').isEmail(),
     // password must be at least 5 chars long
-    check('password').isLength({ min: 6 })
+    check('password', 'Password is required').isLength({ min: 6 })
   ], (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

@@ -1,12 +1,12 @@
 import React from 'react'
 import { Fragment, useState } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 
-export const Register = ({setAlert}) => {
+export const Register = ({setAlert, register}) => {
 
   const [formData, setformData] = useState({
     name: '',
@@ -22,25 +22,7 @@ export const Register = ({setAlert}) => {
     if(password2 !== password){
       setAlert('Passwords do not match', 'danger')
     }else{
-      const userData = {
-        name: name,
-        email: email,
-        password: password
-      }
-
-      try {
-        const config = {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }
-        const body = JSON.stringify(userData);
-  
-        const res = await axios.post('/api/users', body, config);
-        console.log(res.data.token);
-      } catch (err) {
-        console.log(err.message);
-      }
+      register({name, email, password});
     }
   }
 
@@ -49,7 +31,7 @@ export const Register = ({setAlert}) => {
     <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
     <form className="form" onSubmit={e => onSubmit(e)}>
       <div className="form-group">
-        <input type="text" placeholder="Name" name="name" value={name} onChange={e => onChange(e)} required />
+        <input type="text" placeholder="Name" name="name" value={name} onChange={e => onChange(e)} />
       </div>
       <div className="form-group">
         <input type="email" placeholder="Email Address" name="email" value={email} onChange={e => onChange(e)} />
@@ -65,7 +47,6 @@ export const Register = ({setAlert}) => {
           name="password"
           value={password}
           onChange={e => onChange(e)}
-          minLength="6"
         />
       </div>
       <div className="form-group">
@@ -75,7 +56,6 @@ export const Register = ({setAlert}) => {
           name="password2"
           value={password2}
           onChange={e => onChange(e)}
-          minLength="6"
         />
       </div>
       <input type="submit" className="btn btn-primary" value="Register" />
@@ -87,7 +67,8 @@ export const Register = ({setAlert}) => {
 };
 
 Register.propTypes = {
-  setAlert: PropTypes.func.isRequired
+  setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired
 }
 
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register})(Register);
