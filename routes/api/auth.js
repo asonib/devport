@@ -21,9 +21,9 @@ router.get('/', auth, async (req, res) => {
 });
 
 router.post('/', [ 
-    check('email').isEmail(),
+    check('email', 'Email is required').isEmail(),
     // password must be at least 5 chars long
-    check('password').isString()
+    check('password', 'Password is required').isString()
   ], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
