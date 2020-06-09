@@ -5,7 +5,7 @@ export const Navbar = () => {
     return (
         <nav className="navbar bg-primary">
             <h1>
-                <Link to="/"><i className="fas fa-code"></i> DevPort</Link>
+                <Link to="/"><i className="fas fa-code"></i>DevPort</Link>
             </h1>
             <ul>
                 <li><Link to="profiles.html">Developers</Link></li>

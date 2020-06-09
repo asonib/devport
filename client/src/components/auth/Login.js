@@ -1,9 +1,11 @@
 import React from 'react'
 import {Fragment, useState} from 'react';
 import  {Link} from 'react-router-dom';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { login } from '../../actions/auth';
 
-export const Login = () => {
+export const Login = ({ login }) => {
     const [formData, setformData] = useState({
       email: '',
       password: ''
@@ -12,24 +14,7 @@ export const Login = () => {
     const onChange = e => setformData({...formData, [e.target.name]: e.target.value});
     const onSubmit = async(e) => {
       e.preventDefault();
-      
-      try {
-        const loginData = {
-          email: email,
-          password: password
-        }
-        const body = JSON.stringify(loginData);
-        const config = {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }
-  
-        const res = await axios.post('/api/auth', body, config);
-        console.log(res);
-      } catch (err) {
-        console.log(err.messgae);
-      }
+      login(email, password);
     }
     return <Fragment>
       <h1 className="large text-primary">Sign In</h1>
@@ -62,4 +47,7 @@ export const Login = () => {
     </Fragment>
     
 }
-export default Login;
+Login.propTypes = {
+  login: PropTypes.func.isRequired
+}
+export default connect(null, {login})(Login);
