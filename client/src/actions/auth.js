@@ -1,10 +1,32 @@
 import {
     REGISTER_SUCCESS,
-    REGISTER_FAIL
+    REGISTER_FAIL,
+    AUTH_FAIL,
+    USER_LOADED
 } from './type';
 import axios from 'axios';
 import { setAlert } from './alert';
+import setAuthToken from '../utils/setAuthToken';
 
+//Load User
+export const loadUser = () => async dispatch => {
+    if(localStorage.token){
+        setAuthToken(localStorage.token);
+    }
+    try {
+        const res = await axios.get('/api/auth');
+        dispatch({
+            type: USER_LOADED,
+            payload: res.data
+        });
+    } catch (error) {
+        dispatch({
+            type: AUTH_FAIL
+        });
+    }
+}
+
+//Register User
 export const register = ({name, email, password}) => async dispatch =>{
     try {
         const config = {
