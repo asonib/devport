@@ -16,7 +16,7 @@ const Users = mongoose.model('user');
 // @access : Public
 router.get('/me', auth, async (req, res) => {
     try {
-        const profile = await Profile.findOne({ _id: req.user }).populate('user', ['name', 'avatar']);
+        const profile = await Profile.findOne({ user: req.user }).populate('user', ['name', 'avatar']);
 
         if (!profile) {
             return res.status(401).json({ msg: 'No Profile found' });
