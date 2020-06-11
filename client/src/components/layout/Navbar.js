@@ -13,9 +13,9 @@ export const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     );
     const basicLinks = (
         <ul>
-            <li><Link to="profiles.html">Developers</Link></li>
-            <li><Link to="/register">Register</Link></li>
-            <li><Link to="/login">Login</Link></li>
+            <li><Link to="profiles.html"><i className="fas fa-rss"></i> Developers</Link></li>
+            <li><Link to="/register"><i className="fas fa-registered"></i> Register</Link></li>
+            <li><Link to="/login"><i className="fas fa-sign-in-alt"></i> Login</Link></li>
         </ul>
     );
     return (
