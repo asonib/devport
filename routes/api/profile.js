@@ -41,7 +41,6 @@ router.post('/', [auth,
     }
     const {
         company,
-        handle,
         website,
         location,
         status,
@@ -58,7 +57,6 @@ router.post('/', [auth,
     profileDetails = {};
     profileDetails.user = req.user;
     if (company) profileDetails.company = company;
-    if (handle) profileDetails.handle = handle;
     if (website) profileDetails.website = website;
     if (location) profileDetails.location = location;
     if (status) profileDetails.status = status;
