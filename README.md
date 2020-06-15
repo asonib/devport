@@ -69,9 +69,13 @@ jwt.verify(token, 'shhhhh', function(err, decoded) {
     }  
     
   <h3>Concurrently</h3>
-
   npm install concurrently --save
   In package.json, escape quotes:
   "start": "concurrently \"command1 arg\" \"command2 arg\""
+  
+  <h3> Client - React</h3>
+  npx create-react-app my-app
+  cd my-app
+  npm start
     
 </pre>
