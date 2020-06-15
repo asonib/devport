@@ -67,4 +67,9 @@ jwt.verify(token, 'shhhhh', function(err, decoded) {
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
     }  
+    
+    <h3>Concurrently</h3>
+    npm install concurrently --save
+    In package.json, escape quotes:
+    "start": "concurrently \"command1 arg\" \"command2 arg\""
 </pre>
