@@ -6,6 +6,7 @@ const ProfileItem = ({ profile: {
     user: { _id, name, avatar },
     status,
     company,
+    location,
     skills
 } }) => {
     return (
@@ -14,6 +15,7 @@ const ProfileItem = ({ profile: {
             <div>
                 <h2>{name}</h2>
                 <p className="">{status} {company && <span>at {company}</span>}</p>
+                <p className="">{location && <span>at {location}</span>}</p>
                 <Link to={`/profile/${_id}`} className="btn btn-primary">View Profile</Link>
             </div>
             <ul>
