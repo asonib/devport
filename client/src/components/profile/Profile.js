@@ -7,8 +7,8 @@ import { getProfileById } from '../../actions/profile';
 import ProfileTop from './ProfileTop';
 import ProfileAbout from './ProfileAbout';
 import ProfileExperience from './ProfileExperience';
-import PrfileEducation from './ProfileEducation';
 import ProfileEducation from './ProfileEducation';
+import ProfileGithub from './ProfileGithub';
 
 const Profile = ({ getProfileById, match, profile: { profile, loading }, auth }) => {
     useEffect(() => {
@@ -35,6 +35,7 @@ const Profile = ({ getProfileById, match, profile: { profile, loading }, auth })
                     <div class="profile-grid my-1">
                         <ProfileTop profile={profile} />
                         <ProfileAbout profile={profile} />
+                        {profile.githubusername && (<ProfileGithub username={profile.githubusername} />)}
                     </div>
                     <div class="profile-exp bg-white p-2">
                         <h2 class="text-primary">Experience</h2>
