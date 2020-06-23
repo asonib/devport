@@ -73,6 +73,9 @@ jwt.verify(token, 'shhhhh', function(err, decoded) {
   In package.json, escape quotes:
   "start": "concurrently \"command1 arg\" \"command2 arg\""
   
+  <h3>Nodemon</h3>
+  To run the backend server automatically when any changes are done.
+
   <h3> Client - React</h3>
   npx create-react-app my-app
   cd my-app
