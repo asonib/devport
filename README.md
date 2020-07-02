@@ -60,6 +60,7 @@ jwt.verify(token, 'shhhhh', function(err, decoded) {
   gravatar.url(email, options, protocol);
   
   <h3> Express Validator </h3>
+  <pre>
   app.post('/user', [
     // username must be an email
     check('username').isEmail(),
@@ -70,13 +71,15 @@ jwt.verify(token, 'shhhhh', function(err, decoded) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
-    }  
+    } 
+    </pre>
     
   <h3>Concurrently</h3>
+  <pre>
   npm install concurrently --save
   In package.json, escape quotes:
   "start": "concurrently \"command1 arg\" \"command2 arg\""
-  
+  </pre>
   <h3>Nodemon</h3>
   To run the backend server automatically when any changes are done.
 
