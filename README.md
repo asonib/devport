@@ -8,7 +8,7 @@ const app = express()
 
 app.get('/', function (req, res) {
   res.send('Hello World')
-})
+});
 </pre>
 
 app.listen(3000);
@@ -32,6 +32,7 @@ app.listen(3000);
   });
 </pre>
 <h3> Bcrypt </h3>
+<pre>
   var bcrypt = require('bcryptjs');
   bcrypt.genSalt(10, function(err, salt) {
       bcrypt.hash("B4c0/\/", salt, function(err, hash) {
@@ -43,6 +44,7 @@ app.listen(3000);
   bcrypt.compare("B4c0/\/", hash, function(err, res) {
       // res === true
   });
+  </pre>
  <h3> Json Web Token</h3>
  jwt.sign({ foo: 'bar' }, privateKey, { algorithm: 'RS256' }, function(err, token) {
     console.log(token);
