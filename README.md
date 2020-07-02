@@ -1,6 +1,6 @@
 # A MERN Application for developers to connect.
 <h3>Modules Used</h3>
-<pre>
+
 <h3> Express </h3>
 
 const express = require('express')
@@ -82,4 +82,4 @@ jwt.verify(token, 'shhhhh', function(err, decoded) {
   cd my-app
   npm start
     
-</pre>
+
