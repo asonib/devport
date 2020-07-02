@@ -1,4 +1,5 @@
-# Modules Used
+# A MERN Application for developers to connect.
+<h3>Modules Used</h3>
 <pre>
 <h3> Express </h3>
 
