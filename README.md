@@ -46,6 +46,7 @@ app.listen(3000);
   });
   </pre>
  <h3> Json Web Token</h3>
+ <pre>
  jwt.sign({ foo: 'bar' }, privateKey, { algorithm: 'RS256' }, function(err, token) {
     console.log(token);
   });
@@ -53,11 +54,14 @@ app.listen(3000);
 jwt.verify(token, 'shhhhh', function(err, decoded) {
     console.log(decoded.foo) // bar
   });
+  </pre>
   
   <h3> Gravatar </h3>
+  <pre>
   gravatar.url(email);
   gravatar.url(email, options);
   gravatar.url(email, options, protocol);
+  </pre>
   
   <h3> Express Validator </h3>
   <pre>
@@ -81,11 +85,15 @@ jwt.verify(token, 'shhhhh', function(err, decoded) {
   "start": "concurrently \"command1 arg\" \"command2 arg\""
   </pre>
   <h3>Nodemon</h3>
+  <pre>
   To run the backend server automatically when any changes are done.
+  </pre>
 
   <h3> Client - React</h3>
+  <pre>
   npx create-react-app my-app
   cd my-app
   npm start
+  </pre>
     
 
