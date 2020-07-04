@@ -11,9 +11,10 @@ const app = express()
 app.get('/', function (req, res) {
   res.send('Hello World')
 });
+app.listen(3000);
 </pre>
 
-app.listen(3000);
+
 <h3> Mongoose </h3>
 <pre>
   mongoose.connect('mongodb://localhost/my_database', {
