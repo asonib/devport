@@ -95,5 +95,9 @@ jwt.verify(token, 'shhhhh', function(err, decoded) {
   cd my-app
   npm start
   </pre>
-    
+
+  <h3>Deployment - building static assets</h3>
+ <pre>
+  npm run build
+ </pre>
 
