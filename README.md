@@ -98,6 +98,13 @@ jwt.verify(token, 'shhhhh', function(err, decoded) {
 
   <h3>Deployment - building static assets</h3>
  <pre>
+  direct push
   npm run build
+
+  heroku
+  scripts: {
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  }
  </pre>
+
 
