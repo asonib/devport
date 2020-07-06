@@ -13,8 +13,8 @@ const ProfileEducation = ({education: {
 }}) => {
     return (
         <div>
-            <h3 class="text-dark">School : {school}</h3>
-            <h3 class="text-dark">College : {degree}</h3>
+            <h3 class="text-dark">College : {school}</h3>
+            <h3 class="text-dark">Degree : {degree}</h3>
             <p><span className="fa fa-calendar"></span> {<Moment format='DD/MM/YYYY'>{from}</Moment>} - {to ? <Moment format='DD/MM/YYYY'>{to}</Moment> : 'Now'}</p>
             <p><strong>Field Of Study: </strong>{fieldofstudy}</p>
             <p>
