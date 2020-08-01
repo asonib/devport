@@ -27,10 +27,10 @@ app.listen(3000);
   const ObjectId = Schema.ObjectId;
 
   const BlogPost = new Schema({
-      author: ObjectId,
-      title: String,
-      body: String,
-      date: Date
+        author: ObjectId,
+        title: String,
+        body: String,
+        date: Date
     });
   });
 </pre>
