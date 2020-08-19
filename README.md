@@ -1,4 +1,6 @@
 # A MERN Application for developers to connect.
+
+<h3>Project is Live at : https://devport-app.herokuapp.com</h3>
 <h3>Modules Used</h3>
 
 <h3> Express </h3>
@@ -9,9 +11,10 @@ const app = express()
 app.get('/', function (req, res) {
   res.send('Hello World')
 });
+app.listen(3000);
 </pre>
 
-app.listen(3000);
+
 <h3> Mongoose </h3>
 <pre>
   mongoose.connect('mongodb://localhost/my_database', {
@@ -24,10 +27,10 @@ app.listen(3000);
   const ObjectId = Schema.ObjectId;
 
   const BlogPost = new Schema({
-      author: ObjectId,
-      title: String,
-      body: String,
-      date: Date
+        author: ObjectId,
+        title: String,
+        body: String,
+        date: Date
     });
   });
 </pre>
@@ -97,14 +100,25 @@ jwt.verify(token, 'shhhhh', function(err, decoded) {
   </pre>
 
   <h3>Deployment - building static assets</h3>
- <pre>
   direct push
+  <pre>
   npm run build
+  </pre>
 
   heroku
+  <pre>
+  //package.json
   scripts: {
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   }
- </pre>
+  //server mods
+  if(process.env.NODE_ENV === 'production'){
+      //set static path
+      app.use(express.static('client/build'));
+      app.get('*', (req, res) => {
+          res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+      });
+  }
+  </pre>
 
 
