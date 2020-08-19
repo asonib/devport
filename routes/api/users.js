@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 const gravatar = require('gravatar');
 const normalize = require('normalize-url');
 const router = express.Router();
-const keys = require('../../config/keys');
+//const keys = require('../../config/keys');
 
 require('../../models/Users');
 const Users = mongoose.model('user');
@@ -49,7 +49,7 @@ router.post('/', [
     const payload = {
       id: user._id
     }
-    jwt.sign(payload, keys.jwtSecret, { expiresIn: 360000 }, (err, token) => {
+    jwt.sign(payload, process.env.JWT_SECRETKEY, { expiresIn: 360000 }, (err, token) => {
       if (err) throw err;
       res.json({ token });
     });

@@ -5,7 +5,7 @@ const auth = require('../../middleware/auth');
 const { check, validationResult } = require('express-validator');
 const router = express.Router();
 
-const keys = require('../../config/keys');
+//const keys = require('../../config/keys');
 require('../../models/Profile');
 require('../../models/Users');
 const Profile = mongoose.model('profile');
@@ -237,7 +237,7 @@ router.delete('/education/:edu_id', auth, async(req, res) => {
 router.get('/github/:username', (req, res) => {
     const options = {
         uri : `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc&
-        client_id=${keys.gitHubClientID}&client_secret=${keys.gitHubSecretKey}`,
+        client_id=${process.env.gitHubClientID}&client_secret=${process.env.gitHubSecretKey}`,
         method: 'GET',
         headers: {'user-agent': 'node.js'}
     }
