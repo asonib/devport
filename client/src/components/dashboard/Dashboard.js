@@ -13,8 +13,8 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { loading, prof
         getCurrentProfile();
     }, []);
     return loading && profile === null ? <Spinner /> : <Fragment>
-        <h1 className="large text-primary">Dashboard</h1>
-        <p className="lead">
+        <h1 className="large text-primary" style={{fontFamily: 'Montserrat, sans-serif'}}>Dashboard</h1>
+        <p className="lead" style={{fontFamily: 'Montserrat, sans-serif'}}>
             <i className="fas fa-user"></i> Welcome {user && user.name}
         </p>
         {profile !== null ?

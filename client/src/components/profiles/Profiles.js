@@ -11,8 +11,8 @@ const Profiles = ({getProfiles, profile: {profiles, loading}}) => {
     }, [getProfiles])
     return <Fragment>
         { loading ? <Spinner /> : <Fragment>
-            <h1 className="large text-primary">Developers</h1>
-            <p className="lead"> <i className="fab fa-connectdevelop"> Connect With Developers</i></p>
+            <h1 style={{fontFamily: 'Montserrat, sans-serif'}} className="large text-primary">Developers</h1>
+            <p className="lead"> <i className="fab fa-connectdevelop" style={{fontFamily: 'Montserrat, sans-serif'}}> Connect With Developers</i></p>
             <div className="profiles">
                 {profiles.length > 0 ? (
                     profiles.map(profile => <ProfileItem key={profile._id} profile={profile}/>)
